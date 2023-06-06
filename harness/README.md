@@ -31,6 +31,20 @@ pip install -e ".[multilingual]"
 
 ## Basic Usage
 
+```bash
+python /users/xbkx052/archive/eval/harness/lm-evaluation-harness/main.py \
+            --model hf-causal-experimental \
+            --model_args pretrained=/users/xbkx052/archive/llama-7b,load_in_8bit=True,dtype="float16",peft=/users/xbkx052/archive/alpaca-lora/lora-${model}${type}${ngram}${output} \
+            --batch_size 16 \
+            --device cuda:0 \
+            --remove_pc 20 \
+            --remove_few \
+            --num_fewshot 0 \
+            --tasks hellaswag,boolq,piqa,openbookqa,arc_easy,arc_challenge,cb,wic,wsc,race,record,xnli_en,qnli
+```
+Custom commands: --reorder_instruction, --reorder_fewshot, --remove_stops, --remove_few, --remove_pc [percent]
+
+
 > **Note**: When reporting results from eval harness, please include the task versions (shown in `results["versions"]`) for reproducibility. This allows bug fixes to tasks while also ensuring that previously reported scores are reproducible. See the [Task Versioning](#task-versioning) section for more info.
 
 ### Hugging Face `transformers`
